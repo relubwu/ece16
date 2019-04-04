@@ -24,9 +24,7 @@
   http://www.arduino.cc/en/Tutorial/Blink
 */
 
-/*
-  FIELD
-*/
+// FIELD
 const int onDurationSlow = 1500;
 const int onDurationFast = 200;
 const int defaultOnDuration = onDurationSlow;
@@ -46,11 +44,11 @@ void setup() {
 // the loop function runs over and over again forever
 void loop() {
   if (Serial.available() > 0) {
-    String command = Serial.readStringUntil("/r");  // read streamed input until carriage return
-    if (command == "SLOW") {
+    String command = Serial.readStringUntil("\n");  // read streamed input until carriage return
+    if (command.equals("SLOW\n")) {
       onDuration = onDurationSlow;  // set duration to slow (1500ms)
     }
-    if (command == "FAST") {
+    if (command.equals("FAST\n")) {
       onDuration = onDurationFast;  // set duration to fast (200ms)
     }
   }
