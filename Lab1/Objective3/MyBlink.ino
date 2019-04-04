@@ -24,7 +24,9 @@
   http://www.arduino.cc/en/Tutorial/Blink
 */
 
-// FIELD
+/*
+  FIELD
+*/
 const int onDurationSlow = 1500;
 const int onDurationFast = 200;
 const int defaultOnDuration = onDurationSlow;
