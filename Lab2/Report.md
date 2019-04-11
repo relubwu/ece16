@@ -1,0 +1,35 @@
+Baichuan Wu </br>
+A15608204 </br>
+
+# Lab2
+
+## Introduction
+  * Testing AT commands
+  * Communicating with BLE
+  * Sending information to an OLED display
+  * Using a button to create a stopwatch
+  * Soldering: OLED and button
+
+## Objective1
+  1. **Goal**: Arduino to BLE, AT Commands
+  2. **Steps**:
+    * Assemble HM-10 module to Arduino on breadboard
+    * Install `AltSoftSerial` dependencies in Arduino IDE
+    * Setup data transfer route between `SoftSerial` and `AltSoftSerial` in the main `loop()`
+    * Upload compiled code
+    * Test `AT+` commands
+
+## Objective2
+  1. **Goal**: Communicate with other BLE devices
+  2. **Steps**:
+    * Switch self to peripheral / central mode using `AT+ROLEx` command
+    * Query MAC address using `AT+ADDR?` command
+    * Connect to other devices using specific MAC address using `AT+CONx` command
+    * Set connection mode to immediate if necessary using `AT+IMMEx` command
+    * Transfer data
+    * Switch roles using `AT+ROLEx` and repeat aforementioned processes
+
+
+
+## Conclusion
+  All objectives completed. IDE environment set up, solder practiced, first Arduino application created & tested, Github repository initialized.  
