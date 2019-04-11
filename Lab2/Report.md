@@ -29,7 +29,6 @@ A15608204 </br>
     * Set connection mode to immediate if necessary using `AT+IMMEx` command
     * Transfer data
     ![Transferring data to others](Images/objective2a.png)
-    ![Receiving data from others](Images/objective2b.png)
     * Switch roles using `AT+ROLEx` and repeat aforementioned processes
 
 
