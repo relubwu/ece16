@@ -18,6 +18,7 @@ A15608204 </br>
     * Setup data transfer route between `SoftSerial` and `AltSoftSerial` in the main `loop()`
     * Upload compiled code
     * Test `AT+` commands
+    ![Testing AT Commands](Images/objective1.png)
 
 ## Objective2
   1. **Goal**: Communicate with other BLE devices
@@ -27,6 +28,8 @@ A15608204 </br>
     * Connect to other devices using specific MAC address using `AT+CONx` command
     * Set connection mode to immediate if necessary using `AT+IMMEx` command
     * Transfer data
+    ![Transferring data to others](Images/objective2a.png)
+    ![Receiving data from others](Images/objective2b.png)
     * Switch roles using `AT+ROLEx` and repeat aforementioned processes
 
 
