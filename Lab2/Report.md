@@ -31,6 +31,17 @@ A15608204 </br>
     ![Transferring data to others](Images/objective2a.png)
     * Switch roles using `AT+ROLEx` and repeat aforementioned processes
 
+## Objective3a
+  1. **Goal**: OLED Display Peripheral, I2C Protocol
+  2. **Steps**:
+    * Solder 4-header pins onto OLED panel
+    * Attach OLED panel to the breadboard
+    * Install `Wire` and `Adafruit` libraries
+    * Setup text serial channel, styling in `setup()`
+    * Whenever serial receives message, convert it to a `char[]` using `strcpy` to a designated `char[]*`
+    * Pipe text using `display.write()` and `display.display()`
+    * Clear display and reset cursor if necessary using `display.clearDisplay()` and `display.setCursor(0, 0)`
+    ![OLED Board](Images/oled_board.png)
 
 
 ## Conclusion
