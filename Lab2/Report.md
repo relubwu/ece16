@@ -43,6 +43,10 @@ A15608204 </br>
     * Clear display and reset cursor if necessary using `display.clearDisplay()` and `display.setCursor(0, 0)`
     ![OLED Board](Images/oled_board.png)
 
+## Objective4
+  1. **Goal**: Button Input, Pull-up Circuits
+  2. **Steps**:
+    *
 
 ## Conclusion
-  All objectives completed. IDE environment set up, solder practiced, first Arduino application created & tested, Github repository initialized.  
+  All objectives completed. BLE wiring & programming successful, BLE communication achieved. OLED setup & programming completed. 

@@ -8,3 +8,8 @@ This repository serves my ECE16 course assignments & projects.
   * Python Tutorial
   * Arduino Basics
   * Github/Markdown Platform Setup
+* Lab2 - Interfacing with Arduino
+  * AT Commands
+  * Pairing
+  * OLED Display
+  * Button
