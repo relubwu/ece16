@@ -50,19 +50,24 @@ void setup() {
 void loop() {
   if (Serial.available() > 0) {
     String message = Serial.readStringUntil("\n");  // read streamed input until carriage return
-    showMessage(message);
-    delay(2000);
+    showMessage(message); // invoke show message
+    delay(2000); // tick
   }
 }
 
+/*
+ * Covert Serial String input and pipe to Display
+ * 
+ * @param messageString - intended message
+ */
 void showMessage(String messageString) {
-  int messageLength = messageString.length();
-    char messageCharArray[messageLength + 1];
-    strcpy(messageCharArray, messageString.c_str());
-    display.clearDisplay();
-    display.setCursor(0, 0);
-    for (int i = 0; i < messageLength; i++) {
-      display.write(messageCharArray[i]); 
-    }
-    display.display();
+  int messageLength = messageString.length(); // acquire char[] length
+  char messageCharArray[messageLength + 1]; // instantiate char[]
+  strcpy(messageCharArray, messageString.c_str()); // link char[] to corresponding String
+  display.clearDisplay(); // purge previous screen
+  display.setCursor(0, 0); // reset cursor position
+  for (int i = 0; i < messageLength; i++) {
+    display.write(messageCharArray[i]); // loop piping text on screen
+  }
+  display.display(); // execute render
 }
