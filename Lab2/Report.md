@@ -46,7 +46,13 @@ A15608204 </br>
 ## Objective4
   1. **Goal**: Button Input, Pull-up Circuits
   2. **Steps**:
-    *
+    * Assemble pull-up circuit
+      * Connect VCC, GND
+      * Insert button
+      * Connect digital pin 4 to one side of the button
+      * Pull-up the other side with a resistor and short to the ground
+    * Implement state reader function `checkButton()` and main logics in `loop()`
+    * A video [demonstration link](https://drive.google.com/file/d/1GTPBXvcvTuJ1gdO6djioEvL4WEGv9sJM/view?usp=sharing)
 
 ## Conclusion
-  All objectives completed. BLE wiring & programming successful, BLE communication achieved. OLED setup & programming completed. 
+  All objectives completed. BLE wiring & programming successful, BLE communication achieved. OLED setup & programming completed.
