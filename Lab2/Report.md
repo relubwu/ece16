@@ -31,7 +31,7 @@ A15608204 </br>
     ![Transferring data to others](Images/objective2a.png)
     * Switch roles using `AT+ROLEx` and repeat aforementioned processes
 
-## Objective3a
+## Objective3
   1. **Goal**: OLED Display Peripheral, I2C Protocol
   2. **Steps**:
     * Solder 4-header pins onto OLED panel
@@ -42,6 +42,8 @@ A15608204 </br>
     * Pipe text using `display.write()` and `display.display()`
     * Clear display and reset cursor if necessary using `display.clearDisplay()` and `display.setCursor(0, 0)`
     ![OLED Board](Images/oled_board.png)
+    * Actualize circuit on protoboard
+    ![OLED Board 2](Images/oled_board_2.png)
 
 ## Objective4
   1. **Goal**: Button Input, Pull-up Circuits
