@@ -3,7 +3,7 @@
 """
 Created on Tue Apr 16 10:49:48 2019
 
-@author: wubaichuan
+@author: Baichuan Wu #A15608204
 """
 
 import numpy;
