@@ -31,7 +31,7 @@ with serial.Serial(port=serial_port, baudrate=9600, timeout=1) as ser:
     print(read_BLE(ser))
     
     # Set name
-    write_BLE('AT+NAMEA15608204', ser)
+    write_BLE('AT+NAMEreluble_ctr', ser)
     
     # Check results
     print(read_BLE(ser))

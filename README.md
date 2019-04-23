@@ -13,3 +13,8 @@ This repository serves my ECE16 course assignments & projects.
   * Pairing
   * OLED Display
   * Button
+* Lab3 - Interfacing through Python
+  * Python Constructs
+  * Python Serial Communication
+  * Use BLE to send information from the laptop to the Arduino
+  * BLE Sleep
