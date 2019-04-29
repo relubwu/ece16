@@ -10,14 +10,14 @@ class Bt:
         self.serial_port = serial_port
         self.ser = None
         print("Bt initialized")
-      
-    
-    # Set up the BLE module        
+
+
+    # Set up the BLE module
     def ble_setup(self):
         print("Bt setup")
         #print("Resetting connection")
         self.ser = serial.Serial(port=self.serial_port, baudrate=self.baudrate, timeout=1)
-       
+
         setup_commands = ["AT", "AT+IMME1", "AT+NOTI1", "AT+ROLE1"]
 
         connect_command = "AT+CON" + self.ble_peripheral_MAC
@@ -29,7 +29,7 @@ class Bt:
             sleep(0.5)
             response = self.ble_read()
             print("Response: " + response)
-        
+
         # Keep sending the connect command until connection is established
         response = ""
         while not ("OK+CONNAOK+CONN" in response):
@@ -38,7 +38,7 @@ class Bt:
             sleep(0.5)
             response = self.ble_read()
             print("Response: " + response)
-        
+
         # Notify the Arduino we are connected
         sleep(1)
         handshake = False
@@ -48,8 +48,9 @@ class Bt:
             sleep(1)
             if "PeripheralConnected" in self.ble_read():
                 handshake = True
+                print("Connection established and confirmed")
                 break
-        
+
     # Read from BLE until a designated character is found
     def ble_read_line(self, eol='\n'):
         msg = ""
@@ -58,8 +59,8 @@ class Bt:
             msg += c
             c = self.ser.read(1).decode("utf-8")
         return msg
-    
-    
+
+
     # Read from serial ser and return the string that was read
     def ble_read(self):
         msg = ""
@@ -84,4 +85,3 @@ class Bt:
     def ble_close(self):
         self.ser.close()
         return
-    
