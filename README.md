@@ -23,3 +23,8 @@ This repository serves my ECE16 course assignments & projects.
   * Visualizing motion
   * Transmit data
   * Save and playback data
+* Lab5 - IR Heartrate
+  * IR Heartbeat Circuit
+  * Transmitting Heartbeat Data to Python
+  * Create Filter class
+  * Filtering IR Data
