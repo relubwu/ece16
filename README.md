@@ -18,3 +18,8 @@ This repository serves my ECE16 course assignments & projects.
   * Python Serial Communication
   * Use BLE to send information from the laptop to the Arduino
   * BLE Sleep
+* Lab4 - Visualizing IMU Data Samples
+  * BLE handshake
+  * Visualizing motion
+  * Transmit data
+  * Save and playback data
