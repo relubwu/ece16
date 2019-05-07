@@ -37,5 +37,10 @@ A15608204 </br>
     * Test using generated sinusoidal wave
     ![filter_test](Images/filter_test.png)
 
+## Objective4
+  1. **Goal**: Create Filter class
+  2. **Steps**:
+    * Wrap up OO filter class
+    
 ## Conclusion
 Circuit assembled, IR sampling working, data transmission & saving capabilities tested, filter initiation tested
