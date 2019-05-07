@@ -32,7 +32,7 @@ class Bt:
                 print("Failed to connect, please check hardware.")
                 raise IOError
 
-            if "PeripheralConnected" in status:
+            if "#" in status:
                 print("Connection established and confirmed")
                 break
 

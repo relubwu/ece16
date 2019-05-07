@@ -22,5 +22,20 @@ A15608204 </br>
     ![IRcircuit1b](Images/IRcircuit1b.png)
     ![Heartrate1b](Images/Heartrate1b.png)
 
+## Objective2
+  1. **Goal**: Integrate with existing code base
+  2. **Steps**:
+    * Further assemble and solder circuit onto protoboard
+    * Coding on both Arduino and python side to enable analog sensor data transmission capabilities
+    ![Heartrate2a](Images/Heartrate2a.png)
+    * `.csv` file included in ./Images/
+
+## Objective3
+  1. **Goal**: Create Filter class
+  2. **Steps**:
+    * Wrap up OO filter class
+    * Test using generated sinusoidal wave
+    ![filter_test](Images/filter_test.png)
+
 ## Conclusion
-Circuit assembled, IR sampling working
+Circuit assembled, IR sampling working, data transmission & saving capabilities tested, filter initiation tested
