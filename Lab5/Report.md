@@ -21,6 +21,7 @@ A15608204 </br>
     * Upgrade circuit for better resolution
     ![IRcircuit1b](Images/IRcircuit1b.png)
     ![Heartrate1b](Images/Heartrate1b.png)
+    ![SolderedBoard](Images/SolderedBoard.png)
 
 ## Objective2
   1. **Goal**: Integrate with existing code base
@@ -38,9 +39,9 @@ A15608204 </br>
     ![filter_test](Images/filter_test.png)
 
 ## Objective4
-  1. **Goal**: Create Filter class
+  1. **Goal**: Filtering IR Data
   2. **Steps**:
-    * Wrap up OO filter class
-    
+    * Integrate filter OO and BLE data receiver
+
 ## Conclusion
 Circuit assembled, IR sampling working, data transmission & saving capabilities tested, filter initiation tested
