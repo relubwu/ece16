@@ -42,6 +42,11 @@ A15608204 </br>
   1. **Goal**: Filtering IR Data
   2. **Steps**:
     * Integrate filter OO and BLE data receiver
+    * Test using 4.0Hz LPF;
+    * Test using 0.5Hz HPF;
+    ![Heartrate_live](Images/Heartrate_live.png)
+    * **Observation**:
+    Signal after filtering is more "stable", that is, certain amount of noise is deduced
 
 ## Conclusion
-Circuit assembled, IR sampling working, data transmission & saving capabilities tested, filter initiation tested
+Circuit assembled, IR sampling working, data transmission & saving capabilities tested, filter initiation tested, actual filter application tested

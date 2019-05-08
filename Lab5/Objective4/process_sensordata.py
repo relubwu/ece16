@@ -5,12 +5,14 @@ Store it and/or plot it
 
 # Import Python builtin libraries
 import os
+import numpy as np              # Numpy library
 from time import time
 
 # Import custom libraries
 from Libraries.Bt import Bt
 from Libraries.ListBuffer import ListBuffer
 from Libraries.AnimatedFigure import AnimatedFigure
+from Libraries.FilterWrapperBasic_complete import Filter
 
 # Set peripheral MAC as well as HM-10 serial port
 peripheral_MAC = "D8A98BB47D89"
@@ -19,7 +21,7 @@ serial_port = "/dev/cu.usbserial"
 # Define if data should be live-plotted
 live_plot = True
 # Define if data should be written out to file
-write_flag = False
+write_flag = True
 # Define if we should read from BLE or from a file
 # If False, we read from BLE; if True, we read from file and will use the sampling_period (in seconds)
 read_flag = False
@@ -29,7 +31,7 @@ sampling_period = 1 / sampling_freq     # [s]
 
 # Open the files and read and write if necessary
 if write_flag:
-    write_filename = "data_save.csv"
+    write_filename = "Heartrate_HPF.csv"
     # We use this to make sure the file is saved in the script directory and not the dir Python is executing from
     current_dir = os.path.dirname(os.path.abspath(__file__))
     write_file_path = current_dir + "\\" + write_filename
@@ -51,14 +53,18 @@ if read_flag:
 start_time = 0                  # Start time
 
 
-# Initialization of buffers
+# Initialize buffers
 def initialize_buffers():
+    
+    # Set shared variables to global so we can modify them
     global data_buffer
+
     # Create empty buffers to store data
-    buffer_length = 50 * 30  # initial estimate for 30 sec of data at 50Hz, that's probably waaay too long!
-    data_buffer = [[]] * 2  # one for t and one for y, so 2 in total
-    data_buffer[0] = ListBuffer([], maxlen=buffer_length)  # time data
-    data_buffer[1] = ListBuffer([], maxlen=buffer_length)  # sensor data
+    buffer_length = 50 * 10         # Initial estimate for 30 sec of data at 50Hz, that's probably way too long!
+    data_buffer = [[]] * 3          # Two sets of data: time and sensor data
+    data_buffer[0] = ListBuffer([], maxlen=buffer_length)       # time data
+    data_buffer[1] = ListBuffer([], maxlen=buffer_length)       # sensor data
+    data_buffer[2] = ListBuffer([], maxlen=buffer_length)       # filtered sensor data
 
 
 # Initialization of BLE
@@ -130,11 +136,25 @@ def update_data():
     if write_flag:
         write_to_file(data)
 
-    # Add this new data to circular data buffers
-    data_buffer[0].add(data[0])  # t data
-    data_buffer[1].add(data[1])  # y data
+    # ****************************************************************************
+    # * Filter the data
+    # * The process_data() function takes a in a list of elements to be filtered
+    # ****************************************************************************
 
-    return [(data_buffer[0], data_buffer[1])]
+    # You need to add some code here to get "sample_in"
+    # "sample_in" needs to be an np array of the data samples to be filtered
+    # In this case, there is only one sample. So "sample_in" is an array with just one data point.
+    sample_filtered = filter.process_data(data_in=[data[1]])    # Filter the sample
+    
+    
+    # Add this new data to circular data buffers
+    data_buffer[0].add(data[0])                   # time data
+    data_buffer[1].add(data[1])                   # sensor data
+    data_buffer[2].add(sample_filtered)           # filtered sensor data
+
+
+    # Plot two graphs: (sensor data vs time) and (filtered data vs time)
+    return [(data_buffer[0], data_buffer[1]),(data_buffer[0], data_buffer[2])]
     # This format [(x1, y1), (x2, y2), (x3, y3)] is expected by the animation module
 
 
@@ -146,6 +166,11 @@ while True:
         # Take care of some initializations
         initialize_buffers()
         initialize_ble()
+
+        # ****************************************************************************
+        # * Create the filter *
+        # ****************************************************************************
+        filter = Filter(sampling_frequency=sampling_freq, filter_frequency=0.5, filter_type='high')
 
         # If we are plotting our data
         # Call the animation with our update_data() function
