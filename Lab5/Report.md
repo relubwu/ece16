@@ -47,6 +47,7 @@ A15608204 </br>
     ![Heartrate_live](Images/Heartrate_live.png)
     * **Observation**:
     Signal after filtering is more "stable", that is, certain amount of noise is deduced
+    * A video [demonstration link](https://drive.google.com/open?id=1IWU02d92BhD-B2wxqqFUxoPO08Ns6XtO)
 
 ## Conclusion
 Circuit assembled, IR sampling working, data transmission & saving capabilities tested, filter initiation tested, actual filter application tested

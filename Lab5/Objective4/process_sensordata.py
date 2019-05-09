@@ -24,14 +24,14 @@ live_plot = True
 write_flag = True
 # Define if we should read from BLE or from a file
 # If False, we read from BLE; if True, we read from file and will use the sampling_period (in seconds)
-read_flag = False
+read_flag = True
 sampling_freq = 20  # [Hz]
 sampling_period = 1 / sampling_freq     # [s]
 
 
 # Open the files and read and write if necessary
 if write_flag:
-    write_filename = "Heartrate_HPF.csv"
+    write_filename = "Heartrate_test_HPF.csv"
     # We use this to make sure the file is saved in the script directory and not the dir Python is executing from
     current_dir = os.path.dirname(os.path.abspath(__file__))
     write_file_path = current_dir + "\\" + write_filename
@@ -39,7 +39,7 @@ if write_flag:
     write_file.write('{0}, {1} \n'.format("t", "reading"))  # Write the headers for csv file
 
 if read_flag:
-    read_filename = "data_save.csv"
+    read_filename = "Heartrate_test.csv"
     # We use this to make sure the file is saved in the script directory and not the dir Python is executing from
     current_dir = os.path.dirname(os.path.abspath(__file__))
     read_file_path = current_dir + "\\" + read_filename
