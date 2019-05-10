@@ -23,7 +23,10 @@ if (__name__ == "__main__"):
     ##########
     # ---------- Plot 5 sec of Raw Data ---------- #
     plt.figure()
-    # PLOT HERE
+    plt.plot(np.linspace(0.0, 5.0, 50), data_ir_tr[:50])
+    plt.xlabel("IR reading")
+    plt.ylabel("Count (#)")
+    plt.title("First 5 sec of Raw Data")
     plt.show()
 
     
@@ -37,6 +40,7 @@ if (__name__ == "__main__"):
     plt.xlabel("IR reading")
     plt.ylabel("Count (#)")
     plt.title("IR Signal Histogram")
+    plt.show()
     
 
     ##########
@@ -47,7 +51,7 @@ if (__name__ == "__main__"):
     gmm = GM(n_components=2)
 
     # Fit 2 component Gaussian to the data
-    gmm_fit = gmm.fit(np.array([data_time_tr, data_ir_tr]))              # Pass correct parameters. Remember that this expects a 2D array.
+    gmm_fit = gmm.fit(np.array(data))             # Pass correct parameters. Remember that this expects a 2D array.
 
     # Retrieve Gaussian parameters
     mu0 = gmm_fit.means_[0]
@@ -66,10 +70,11 @@ if (__name__ == "__main__"):
     plt.ylabel("Count (#)")
     plt.title("IR Signal Histogram")
     plt.plot(x, w0 * mlab.normpdf(x, mu0, sig0) + w1 * mlab.normpdf(x, mu1, sig1))
+    plt.show()
         
     # ---------- Plot two Gaussians over histogram ---------- #
     # Add the appropriate code
-        
+    # plt.plot(x, w0 * mlab.normpdf(x, mu0, sig0) + w1 * mlab.normpdf(x, mu1, sig1))
         
     ##########
     # Step 5 #
