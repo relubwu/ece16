@@ -28,3 +28,7 @@ This repository serves my ECE16 course assignments & projects.
   * Transmitting Heartbeat Data to Python
   * Create Filter class
   * Filtering IR Data
+* Lab6 - Heartrate Calculation using Machine Learning
+  * Heartbeat Detection
+  * Modular HR Class
+  * Calculating Heart Rate (HR)
