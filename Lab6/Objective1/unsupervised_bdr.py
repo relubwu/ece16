@@ -51,7 +51,7 @@ if (__name__ == "__main__"):
     gmm = GM(n_components=2)
 
     # Fit 2 component Gaussian to the data
-    gmm_fit = gmm.fit(np.array(data))             # Pass correct parameters. Remember that this expects a 2D array.
+    gmm_fit = gmm.fit(np.array([data_ir_tr]).reshape(-1, 1))             # Pass correct parameters. Remember that this expects a 2D array.
 
     # Retrieve Gaussian parameters
     mu0 = gmm_fit.means_[0]
