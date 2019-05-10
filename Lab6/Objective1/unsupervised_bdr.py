@@ -68,13 +68,20 @@ if (__name__ == "__main__"):
     plt.hist(data_ir_tr, bins=50, density=True)
     plt.xlabel("IR reading")
     plt.ylabel("Count (#)")
-    plt.title("IR Signal Histogram")
+    plt.title("IR Signal Histogram + Gaussians sum")
     plt.plot(x, w0 * mlab.normpdf(x, mu0, sig0) + w1 * mlab.normpdf(x, mu1, sig1))
     plt.show()
         
     # ---------- Plot two Gaussians over histogram ---------- #
     # Add the appropriate code
-    # plt.plot(x, w0 * mlab.normpdf(x, mu0, sig0) + w1 * mlab.normpdf(x, mu1, sig1))
+    plt.figure()
+    plt.hist(data_ir_tr, bins=50, density=True)
+    plt.xlabel("IR reading")
+    plt.ylabel("Count (#)")
+    plt.title("IR Signal Histogram + two Gaussians")
+    plt.plot(x, w0 * mlab.normpdf(x, mu0, sig0))
+    plt.plot(x, w1 * mlab.normpdf(x, mu1, sig1))
+    plt.show()
         
     ##########
     # Step 5 #
