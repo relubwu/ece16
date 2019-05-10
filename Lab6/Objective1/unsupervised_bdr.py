@@ -25,7 +25,7 @@ if (__name__ == "__main__"):
     plt.figure()
     plt.plot(np.linspace(0.0, 5.0, 50), data_ir_tr[:50])
     plt.xlabel("IR reading")
-    plt.ylabel("Count (#)")
+    plt.ylabel("Voltage (V)")
     plt.title("First 5 sec of Raw Data")
     plt.show()
 
@@ -67,7 +67,7 @@ if (__name__ == "__main__"):
     plt.figure()
     plt.hist(data_ir_tr, bins=50, density=True)
     plt.xlabel("IR reading")
-    plt.ylabel("Count (#)")
+    plt.ylabel("Voltage (V)")
     plt.title("IR Signal Histogram + Gaussians sum")
     plt.plot(x, w0 * mlab.normpdf(x, mu0, sig0) + w1 * mlab.normpdf(x, mu1, sig1))
     plt.show()
@@ -77,7 +77,7 @@ if (__name__ == "__main__"):
     plt.figure()
     plt.hist(data_ir_tr, bins=50, density=True)
     plt.xlabel("IR reading")
-    plt.ylabel("Count (#)")
+    plt.ylabel("Voltage (V)")
     plt.title("IR Signal Histogram + two Gaussians")
     plt.plot(x, w0 * mlab.normpdf(x, mu0, sig0))
     plt.plot(x, w1 * mlab.normpdf(x, mu1, sig1))
@@ -88,18 +88,32 @@ if (__name__ == "__main__"):
     ##########
     # ---------- Load validation data ---------- #
     # Load validation data
-    data_time_va, data_ir_va = np.loadtxt("path to ir_data_validation.csv", delimiter=",", skiprows=1, unpack=True)
+    data_time_va, data_ir_va = np.loadtxt("ir_data_validation.csv", delimiter=",", skiprows=1, unpack=True)
         
     # ---------- Predict Labels for training data ---------- #
     # Predict training labels
-    train_pred_lbl = gmm_fit.predict()                     # Pass correct parameters
+    train_pred_lbl = gmm_fit.predict(np.array([data_ir_tr]).reshape(-1, 1))                     # Pass correct parameters
 
     # ---------- Predict Labels for validation data ---------- #
     # Predict validation labels
-    validation_pred_lbl = gmm_fit.predict()                # Pass correct parameters
+    validation_pred_lbl = gmm_fit.predict(np.array([data_ir_va]).reshape(-1, 1))                # Pass correct parameters
 
     # ---------- Plot Training Set predictions ---------- #
-    # Complete the code
+    data_range = 150
+    plt.figure()
+    plt.plot(data_time_tr[:data_range], train_pred_lbl[:data_range] * 30 + np.min(data_ir_tr[:data_range]))
+    plt.plot(data_time_tr[:data_range], data_ir_tr[:data_range])
+    plt.xlabel("IR reading")
+    plt.ylabel("Voltage (V)")
+    plt.title("Labeled Training")
+    plt.show()
         
     # ---------- Plot Validation Set predictions ---------- #
     # Complete the code
+    plt.figure()
+    plt.plot(data_time_va[:data_range], validation_pred_lbl[:data_range] * 30 + np.min(data_ir_va[:data_range]))
+    plt.plot(data_time_va[:data_range], data_ir_va[:data_range])
+    plt.xlabel("IR reading")
+    plt.ylabel("Voltage (V)")
+    plt.title("Labeled Validation")
+    plt.show()
