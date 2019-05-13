@@ -12,26 +12,23 @@ This lab implements heart rate calculation using machine learning
 ## Objective1
   1. **Goal**: Data Collection, Unsupervised Learning, Gaussian Mixture Models
   2. **Steps**:
-    * Plot first 5 second of raw data using `np.linspace()` and list slicing syntax, results are: <br>
+    * Plot first 5 second of raw data using ```np.linspace()``` and list slicing syntax, results are: <br>
     ![IRdata](Images/IRdata.png)
-
-    * Plot the histogram of IR signal with 50 bins using `plt.hist()`, results are: <br>
+    * Plot the histogram of IR signal with 50 bins using ```plt.hist()```, results are: <br>
     ![hist](Images/hist.png) <br>
     **Observation**:
     Histogram data strongly suggests that there exists a right-skewed gaussian distribution within our dataset. However, a "borderline" is required to further classify our data.
-
-    * Calculate GM model, acquire corresponding parameters (average, standard deviation, weight) using `gmm.fit()` method, results are: <br>
+    * Calculate GM model, acquire corresponding parameters (average, standard deviation, weight) using ```gmm.fit()``` method, results are: <br>
     ![hist_sum](Images/hist_sum.png) <br>
     ![hist_individual](Images/hist_individual.png) <br>
-
-    * Reshape both training and validation data to 2 dimensional array using `np.array().reshape()`
-    * Apply data label prediction to both training and validation data using `.predict()`
+    * Reshape both training and validation data to 2 dimensional array using ```np.array().reshape()```
+    * Apply data label prediction to both training and validation data using ```.predict()```
     * Plot results with proper scaling:
     ![labeled_tr](Images/labeled_tr.png) <br>
     ![labeled_val](Images/labeled_val.png) <br>
 
 ## Objective2
-  1. **Goal**: Create an `HR_calc` class, Add training ability
+  1. **Goal**: Create an ```HR_calc``` class, Add training ability
 , Add labeling ability
   2. **Steps**:
     * Wrap up methods to acquire GMM parameters, train model, and label prediction using Python Objective Oriented Coding
