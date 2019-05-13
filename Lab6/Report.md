@@ -30,4 +30,21 @@ This lab implements heart rate calculation using machine learning
     ![labeled_tr](Images/labeled_tr.png) <br>
     ![labeled_val](Images/labeled_val.png) <br>
 
+## Objective2
+  1. **Goal**: Create an `HR_calc` class, Add training ability
+, Add labeling ability
+  2. **Steps**:
+    * Wrap up methods to acquire GMM parameters, train model, and label prediction using Python Objective Oriented Coding
+    * Create private method to normalize input data to label them on a more intuitive scale
+    * GMM parameter and trained results are:
+    <br>
+    ![class_test_hist](Images/class_test_hist.png) <br>
+    ![class_test_labels](Images/class_test_labels.png) <br>
+    * Data are labeled correctly
+
+## Objective3
+  1. **Goal**: Heuristics in ML
+  2. **Steps**:
+    *
+
 ## Conclusion
