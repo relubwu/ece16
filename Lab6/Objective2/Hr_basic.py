@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 import numpy as np
 
 # from Libraries.ListBuffer import ListBuffer
@@ -51,7 +52,7 @@ class Hr:
 
     def plot_histo(self, ir):
 
-         # Retrieve Gaussian parameters
+        # Retrieve Gaussian parameters
 
         mu0 = self.model.means_[0]
         sig0 = np.sqrt(self.model.covariances_[0])
@@ -61,14 +62,14 @@ class Hr:
         sig1 = np.sqrt(self.model.covariances_[1])
         w1 = self.model.weights_[1]
 
-         # Create an "x" vector from which to compute normal distribution curves
+        # Create an "x" vector from which to compute normal distribution curves
 
         x = np.reshape(np.linspace(np.min(ir), np.max(ir), 1000),
                        [1000, 1])
 
-         # Compute normal curves
+        # Compute normal curves
 
-         # Plot histograms and sum of curves
+        # Plot histograms and sum of curves
 
         plt.figure()
         plt.hist(ir, bins=50, density=True)
@@ -92,29 +93,60 @@ class Hr:
         plt.title('Labeled Training')
         plt.show()
 
+    # Process the IR data to get a heart rate estimate
+    # t_data: numpy array with timestamps
+    # ir_data: numpy array with IR data
+    # returns: heart rate hr estimate in bpm (returns None if not valid) and the time t_hr for that hr estimate
 
-#    # Process the IR data to get a heart rate estimate
-#    # t_data: numpy array with timestamps
-#    # ir_data: numpy array with IR data
-#    # returns: heart rate hr estimate in bpm (returns None if not valid) and the time t_hr for that hr estimate
-#    def process(self, t_data, ir_data):
-#         # Reshape and normalize your data
-#         # Use GMM to label beats
-#         labels = self.model.predict(ir_data)
-#
-#         # Apply beat heuristics
-#         # You may want to wrap this in a try/except clause to avoid issues like 0 heartbeat giving a divide by zero error
-#         t_hr, hr = self.hr_heuristics(t, labels)
-#
-#         return t_hr, hr
-#
-#    # Process the label data to get a hr estimate
-#    # t: numpy array with timestamps
-#    # labels: numpy array with corresponding GMM labels of the data
-#    # returns: heart rate hr estimate in bpm (returns None if not valid) and the time t_hr for that hr estimate
-#     def hr_heuristics(self, t, labels):
-#
-#
-#
-#         return t_hr, hr
-#
+    def process(self, t_data, ir_data):
+
+        # Reshape and normalize your data
+
+        ir_data = np.array([ir_data]).reshape(-1, 1)
+        ir_data = self._normalize(ir_data)
+
+        # Use GMM to label beats
+
+        labels = self.model.predict(ir_data)
+
+        # Apply beat heuristics
+        # You may want to wrap this in a try/except clause to avoid issues like 0 heartbeat giving a divide by zero error
+
+        try:
+            (t_hr, hr) = self.hr_heuristics(t_data, labels)
+            return (t_hr, hr)
+        except:
+            return None
+
+    # Process the label data to get a hr estimate
+    # t: numpy array with timestamps
+    # labels: numpy array with corresponding GMM labels of the data
+    # returns: heart rate hr estimate in bpm (returns None if not valid) and the time t_hr for that hr estimate
+    def hr_heuristics(self, t, labels):
+        # print(labels)
+        interval = []
+        intervalFlag = False
+        counter = 0
+        # Count timespan for each pulse
+        for sample in labels:
+            if sample == 1:
+                if not intervalFlag:
+                    intervalFlag = True
+                counter = counter + 1
+            else:
+                if intervalFlag:
+                    intervalFlag = False
+                    interval.append(counter)
+                    counter = 0
+        # Acquire average interval for a single pulse
+        avgInterval = np.average(interval)
+        # Eliminate outlier pulse
+        for sample in interval:
+            if sample < avgInterval:
+                interval.remove(sample)
+        numSamples = len(interval)
+        # Timespan of sample in minutes
+        timespan = (len(t) * 0.05) / 60
+        # Calculate bpm
+        bpm = numSamples / timespan
+        return t, bpm
