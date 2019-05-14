@@ -112,6 +112,8 @@ class Hr:
         # Apply beat heuristics
         # You may want to wrap this in a try/except clause to avoid issues like 0 heartbeat giving a divide by zero error
 
+        
+
         try:
             (t_hr, hr) = self.hr_heuristics(t_data, labels)
             return (t_hr, hr)
@@ -140,9 +142,10 @@ class Hr:
                     counter = 0
         # Acquire average interval for a single pulse
         avgInterval = np.average(interval)
+        stdInterval = np.std(interval)
         # Eliminate outlier pulse
         for sample in interval:
-            if sample < avgInterval:
+            if sample < avgInterval - 2 * stdInterval or sample > avgInterval + 2 * stdInterval:
                 interval.remove(sample)
         numSamples = len(interval)
         # Timespan of sample in minutes

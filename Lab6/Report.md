@@ -43,6 +43,11 @@ This lab implements heart rate calculation using machine learning
   2. **Steps**:
     * Acquire GMM ```predict()``` of input data
     * Calculate average timespan of each heartbeat sample
-    * Eliminate outlier samples that have
+    * Eliminate outlier samples that have outlying 2-sigma sample span
+    * Calculate instantaneous bpm using ```beats / minute```
+    * Yield result
+    * Plots are: <br>
+    ![process_tr_test](Images/process_tr_test.png) <br>
 
 ## Conclusion
+We've gained substantial knowledge on data processing using machine learning throughout this lab. We've learned how to create a Gaussian Mixture Model upon dataset and apply
