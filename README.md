@@ -32,3 +32,7 @@ This repository serves my ECE16 course assignments & projects.
   * Heartbeat Detection
   * Modular HR Class
   * Calculating Heart Rate (HR)
+* Lab7 - Integration
+  * Live Heart Rate Calculation
+  * IMU Data Handling
+  * Active State Classification
