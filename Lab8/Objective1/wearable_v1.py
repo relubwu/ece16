@@ -32,8 +32,9 @@ sampling_period = 1 / sampling_freq  # [s]
 # Define global timer
 time_start_bpm = 0.0
 time_start_pedometer = 0.0
-# Define global steps counter
+# Define global steps counter and bpm value
 steps = 0
+bpm = 0.0
 # Define global offset
 offset = 100
 
@@ -137,6 +138,7 @@ def update_data():
     global time_start_pedometer
     global steps
     global offset
+    global bpm
 
     data = None
     while not data:  # Keep looping until valid data is captured
@@ -179,9 +181,10 @@ def update_data():
     time_end_bpm = time()
     if (time_end_bpm - time_start_bpm >= 1):
         time_start_bpm = time()
-        bpm = hr_calc.process(data_buffer[0], data_buffer[1])
-        if (bpm[1] is not None):
-          print("BPM: %.2f" % bpm[1])
+        bpm_result = hr_calc.process(data_buffer[0], data_buffer[1])
+        if (bpm_result[1] is not None):
+            bpm = bpm_result[1]
+            print("BPM: %.2f" % bpm)
 
     # Time-elapsed pedometer
     time_end_pedometer = time()
@@ -194,6 +197,9 @@ def update_data():
         pedo_calc.process(f, g)
         offset += 100
         print("Steps:", pedo_calc.steps)
+        steps = pedo_calc.steps
+        
+        bt.ble_write("HR:" + str(bpm) + "," + "Steps:" + str(steps) + ";" )
             
     
     return [(data_buffer[0], data_buffer[2])]  # Plot t, imu data

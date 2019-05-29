@@ -177,8 +177,7 @@ class Pedometer:
         # Extract features for KNN
         # call self.extract_features(...)
         feature = self.extract_features(t, imu)
-        feature = np.array([feature]).reshape(-1, 1) 
-        print(feature)        
+        feature = np.array([feature]).reshape(-1, 1)         
         # Classify using KNN
         result = self.knn.predict(feature)
         # Return the result (labels) of the classification
@@ -186,11 +185,8 @@ class Pedometer:
      
         
     def imu_heuristics(self, t, imu):
-        print("imu_heuristics is called")
-        # print(imu)
         steps =0
         peaks, properties = find_peaks(imu.flatten(), prominence=8000, width=2)
-        print(properties)
         plt.figure()
         plt.plot(imu)
         # plt.vlines(x=peaks, ymin=imu[peaks] - properties["prominences"], max = imu[peaks], color = "C1")

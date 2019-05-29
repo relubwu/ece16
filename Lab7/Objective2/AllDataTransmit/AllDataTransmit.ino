@@ -324,7 +324,7 @@ void loop() {
         sprintf(out_text, "%s, %s, %s;", time_text, ir_text, imu_text);     // Combine char arrays and add coma, semicolon
   
         BTserial.print(out_text);
-        Serial.println(out_text);                         // Enable this for debugging
+        // Serial.println(out_text);                         // Enable this for debugging
       }
       
     }
