@@ -276,7 +276,7 @@ void setup() {
 // --------------------------------------------------------------------------------
 // Normalize data
 // --------------------------------------------------------------------------------
-int16_t l1norm() {
+int32_t l1norm() {
   return abs(ax) + abs(ay) + abs(az);
 }
 
@@ -320,7 +320,7 @@ void loop() {
   
         dtostrf(endTime / 1e6, 5, 2, time_text);               // Write the end time to the time data char array
         dtostrf(sensorValue, 6, 0, ir_text);                           // Write the IMU x axis data to the IMU data char array
-        dtostrf(l1norm(), 6, 0, imu_text);                           // Write the IMU x axis data to the IMU data char array
+        dtostrf(l1norm(), 12, 0, imu_text);                           // Write the IMU x axis data to the IMU data char array
         sprintf(out_text, "%s, %s, %s;", time_text, ir_text, imu_text);     // Combine char arrays and add coma, semicolon
   
         BTserial.print(out_text);
@@ -329,4 +329,5 @@ void loop() {
       
     }
   }
+  
 }

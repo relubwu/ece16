@@ -157,7 +157,7 @@ class Hr:
         timespan = (len(t) * 0.05) / 60
         # Calculate bpm
         bpm = numSamples / timespan
-        if 50 < bpm < 250:
+        if 60 < bpm < 180:
             return t, bpm
         else:
             return bpm

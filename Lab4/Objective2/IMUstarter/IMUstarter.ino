@@ -104,6 +104,9 @@ void setup() {
 
 }
 
+int16_t l1norm() {
+  return abs(ax) + abs(ay) + abs(az);
+}
 
 // --------------------------------------------------------------------------------
 // Loop: main code; executed in an infinite loop
@@ -120,11 +123,7 @@ void loop() {
           readIMU();
           imuDataReady = false;
 
-          Serial.print(ax);
-          Serial.print(" ");
-          Serial.print(ay);
-          Serial.print(" ");
-          Serial.println(az);
+          Serial.println(l1norm());
         }
       }
 
