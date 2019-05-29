@@ -21,9 +21,9 @@ peripheral_MAC = "D8A98BB47D89"
 serial_port = "/dev/cu.usbserial"
 
 # Define if data should be live-plotted
-live_plot = True
+live_plot = False
 # Define if data should be written out to file
-write_flag = True
+write_flag = False
 # Define if we should read from BLE or from a file
 # If False, we read from BLE; if True, we read from file and will use the sampling_period (in seconds)
 read_flag = False
@@ -163,42 +163,40 @@ def update_data():
     # print(data[2])
     # data[2] = abs(data[2]) - 49152
     unfiltered_imu = data[2]  # The sample is [time, sensordata]; extract the sensordata part
-#    print(unfiltered_imu)
-#    lowpass_imu = [lowpass_filt.process_data(unfiltered_imu)]  # Filter the sample
-#    bandpass_imu = highpass_filt.process_data(lowpass_imu)  # Filter the sample
+    lowpass_imu = [lowpass_filt.process_data(unfiltered_imu)]  # Filter the sample
+    bandpass_imu = highpass_filt.process_data(lowpass_imu)  # Filter the sample
     
-#    data = data + [bandpass_imu]
+    data = data + [bandpass_imu]
 
     # Add this new data to circular data buffers
     data_buffer[0].add(data[0])  # t data
     data_buffer[1].add(data[1])  # ir data
     data_buffer[2].add(data[2])  # imu data
     data_buffer[3].add(data[3])  # filtered ir data
-#    data_buffer[4].add(data[4])  # filtered imu data
+    data_buffer[4].add(data[4])  # filtered imu data
     
     # Time-elapsed BPM calculation
     time_end_bpm = time()
     if (time_end_bpm - time_start_bpm >= 1):
         time_start_bpm = time()
         bpm = hr_calc.process(data_buffer[0], data_buffer[1])
-        # if (bpm[1] is not None):
-        #   print("BPM: %.2f" % bpm[1])
+        if (bpm[1] is not None):
+          print("BPM: %.2f" % bpm[1])
 
     # Time-elapsed pedometer
     time_end_pedometer = time()
     if (time_end_pedometer - time_start_pedometer >= 5):
         time_start_pedometer = time()
         
-        f= np.array(data_buffer[2][-offset:]).reshape(-1, 1)
-        g= np.array(data_buffer[0][-offset:]).reshape(-1, 1)
-        print(f)
+        f = np.array(data_buffer[0][-offset:]).reshape(-1, 1)
+        g = np.array(data_buffer[2][-offset:]).reshape(-1, 1)
         
-        pedo_calc.process(g, f)
+        pedo_calc.process(f, g)
         offset += 100
         print("Steps:", pedo_calc.steps)
             
     
-    return [(data_buffer[0], data_buffer[2])]  # Plot t, imu data, filtered imu data
+    return [(data_buffer[0], data_buffer[2])]  # Plot t, imu data
     # This format [(x1, y1), (x2, y2), (x3, y3)] is expected by the animation module
 
 
@@ -245,10 +243,6 @@ while True:
             axes[0].set_title('Data')
             axes[0].set_xlabel('Time (s)')
             axes[0].set_ylabel('IMU Value (au)')
-
-#            axes[1].set_title('Data')
-#            axes[1].set_xlabel('Time (s)')
-#            axes[1].set_ylabel('Filtered IMU Value (au)')
 
             an.animate()  # only call this after configuring your figure
 
