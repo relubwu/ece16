@@ -24,15 +24,15 @@ This lab integrates previous labs and appends IMU data handling capabilities
 ## Objective3
   1. **Goal**: Vibrating Motor
   2. **Steps**:
-    * Modify and insert a call to ```bt.ble_write()``` every time calling ```update_data()``` to transmit data backward to Arduino
-    * Display data onto OLED
-    * A video [demonstration link](https://drive.google.com/open?id=1G47fR5XwRz9-rc53TlTSygajftKjFQnD)
+    * Finish soldering and attach the vibrating motor to protoboard
+    * Use ```%5``` operation to trigger ```LOW``` sink to activate motor whenever steps reaches a multiple of 5
+    * A video [demonstration link](https://drive.google.com/file/d/1cMuJw4fwdf59asFOX0oDrpLHMY2b4KMR/view?usp=sharing)
 
 ## Objective4
   1. **Goal**: Improvements
   2. **Steps**:
     * Our current heuristics for bpm utilizes the average interval between signals to eliminate outlier and thus acquire number of labels within a specific data chunk, then calculate it against the timespan of the chunk to resolve bpm. However, this algorithm can't handle situations where static data is passed in, therefore we might need another threshold gate to deactivate it when no pulse detected, as the ```is_active()``` does for pedometer
-    * Our current heuristics for pedometer utilizes the peak detection api ```find_peaks()``` of ```scipy.signal```. However, the width and prominence are now being set fixed, maybe we could dynamically calculate these two parameters for different scenarios to generate better results. 
+    * Our current heuristics for pedometer utilizes the peak detection api ```find_peaks()``` of ```scipy.signal```. However, the width and prominence are now being set fixed, maybe we could dynamically calculate these two parameters for different scenarios to generate better results.
 
 ## Conclusion
-Objectives completed, HR BPM recognition implemented, IMU data comm and processing fulfilled, pedometer KNN model traning tested.
+Objectives completed, pedometer peaking detection and counting achieved, dual way communication achieved, vibrating motor installed and functioning, improvements and insights planned. 

@@ -321,10 +321,12 @@ void loop() {
       Serial.println(in_text);
       String stepString = getValue(in_text, ":", 1);
       steps += stepString.toInt();
-      if (steps % 5 == 0)
-        digitalWrite(motor, LOW)
-       else
-        digitalWrite(motor, HIGH)
+      if (steps % 5 == 0) {
+        digitalWrite(motorPin, LOW);
+        delay(200);
+      } else {
+        digitalWrite(motorPin, HIGH);
+      }
     }
   }
 
